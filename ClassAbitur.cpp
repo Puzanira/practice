@@ -79,7 +79,7 @@ public:
 		*this = abitur;
 	}
 
-	Abitur& operator= (const Abitur& abitur){   //оператор присваивания
+	const Abitur& operator= (const Abitur& abitur){   //оператор присваивания
 		surname = abitur.surname;				// abitur1 = abitur2 (сработает даже
 		name = abitur.name;						// если не в момент создания
 		patronim = abitur.patronim;
@@ -205,14 +205,31 @@ void PrintProhodnoi(const vector<Abitur>& allAbiturs){
 			average = (abitur.GetSummMarks() / (double)abitur.GetMarks().size());
 			if ( average > treshold){
 				PrintAbitur(abitur);
-				cout << "With average: " << average << endl;
+				cout << "With average: " << average << endl << endl;
 			}
 	}
 }
 
-void SortAbirurs (const vector<Abitur>& allAbiturs){
-	sort(allAbiturs.begin(), allAbiturs.end(), [](Abitur& a, Abitur& b){return a.GetSummMarks() < b.GetSummMarks();});
+void SortAbiturs (vector<Abitur>& allAbiturs){
+	sort(allAbiturs.begin(), allAbiturs.end(), [](Abitur& a, Abitur& b){return a.GetSummMarks() > b.GetSummMarks();});
 }
+
+void PrintBest(vector<Abitur>& allAbiturs){
+	int N;
+	cout << "How much best abiturs?: ";
+	cin >> N;
+	SortAbiturs(allAbiturs);
+	int i = 0;
+	for (const Abitur& abitur : allAbiturs){
+			if (i >= N){
+				break;
+			}
+			PrintAbitur(abitur);
+			cout << endl;
+			i++;
+		}
+}
+
 
 int main() {
 
@@ -234,7 +251,7 @@ int main() {
 								Adress("Gorkii, Slez, 12a"), Marks({44, 95, 25})}};
 
 	Abitur abitur1 = {Surname("Petrov"), Name("Petr"), Patronim("Petrovich"),
-					 Adress("Ekat, Shevskaya, 29"), Marks({5, 5, 4, 5})};
+					 Adress("Ekat, Shevskaya, 29"), Marks({23, 30, 45})};
 	allAbiturs.push_back(abitur1);
 
 	PrintAllAbiturs(allAbiturs);
@@ -245,6 +262,8 @@ int main() {
 
 	PrintProhodnoi(allAbiturs);
 	cout << endl;
+
+	PrintBest(allAbiturs);
 
 	return 0;
 }
