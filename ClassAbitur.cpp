@@ -80,8 +80,8 @@ public:
 	}
 
 	Abitur& operator= (const Abitur& abitur){   //оператор присваивания
-		surname = abitur.surname;				          // abitur1 = abitur2 (сработает даже
-		name = abitur.name;						            // если вызывть не в момент создания)
+		surname = abitur.surname;				// abitur1 = abitur2 (сработает даже
+		name = abitur.name;						// если не в момент создания
 		patronim = abitur.patronim;
 		adress = abitur.adress;
 		marks = abitur.marks;
@@ -161,8 +161,8 @@ private:
 
 void PrintAbitur(const Abitur& abitur){ //интерфейсное представление объекта
 	cout << "Abiturient: ";
-	cout << abitur.GetSurame() << ' ';    //печатать - не свойство абитуриента
-	cout << abitur.GetName() << ' ';      //возможент разнообразный вывод
+	cout << abitur.GetSurame() << ' '; //печатать - не свойство абитуриента
+	cout << abitur.GetName() << ' ';   //возможент разнообразный вывод
 	cout << abitur.GetPatronim() << ' ';
 	cout << endl;
 	cout << "Adress: ";
@@ -214,17 +214,15 @@ void SortAbirurs (const vector<Abitur>& allAbiturs){
 	sort(allAbiturs.begin(), allAbiturs.end(), [](Abitur& a, Abitur& b){return a.GetSummMarks() < b.GetSummMarks();});
 }
 
-void
-
 int main() {
 
 	// Abitur abitur = {"P", "Ivan", "S", "Stoy. 12", {1,2}};
 
-	vector<Abitur> allAbiturs = {{Surname("Ivanon"), Name("Ivan"), Patronim("Inanovich"),
-			 	 	 	 	 	 Adress("Vologda, Lenina, 45"), Marks({76, 74, 92})},
+	vector<Abitur> allAbiturs = {{Surname("Ivanon"), Name("Ivan"), Patronim("Ivanovich"),
+			 	 	 	 	 	 Adress("Vologda, Lenina, 45"), Marks({76, 86, 96})},
 
 								{Surname("Sidorov"), Name("Sidor"), Patronim("Sirorovich"),
-								 Adress("Moscow, Mira, 16"), Marks({98, 95, 92})},
+								 Adress("Moscow, Mira, 16"), Marks({98, 96, 94})},
 
 								{Surname("Viktorov"), Name("Victor"), Patronim("Victorovich"),
 								Adress("Sevastopol, Krasnaya, 27b"), Marks({34, 82, 73})},
@@ -236,7 +234,7 @@ int main() {
 								Adress("Gorkii, Slez, 12a"), Marks({44, 95, 25})}};
 
 	Abitur abitur1 = {Surname("Petrov"), Name("Petr"), Patronim("Petrovich"),
-					 Adress("Ekat, Shevskaya, 29"), Marks({27, 50, 30})};
+					 Adress("Ekat, Shevskaya, 29"), Marks({5, 5, 4, 5})};
 	allAbiturs.push_back(abitur1);
 
 	PrintAllAbiturs(allAbiturs);
